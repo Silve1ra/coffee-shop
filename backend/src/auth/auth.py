@@ -7,7 +7,7 @@ from urllib.request import urlopen
 
 AUTH0_DOMAIN = 'silve1ra.us.auth0.com'
 ALGORITHMS = ['RS256']
-API_AUDIENCE = 'dev'
+API_AUDIENCE = 'coffee-shop'
 
 ## AuthError Exception
 '''
@@ -60,6 +60,7 @@ def check_permissions(permission, payload):
             'description': 'Permissions not included in JWT.'
         }, 400)
 
+    
     if permission not in payload['permissions']:
         raise AuthError({
             'code': 'unauthorized',
@@ -69,10 +70,9 @@ def check_permissions(permission, payload):
 
 
 ## Decoding JWT
-'''
-    !!NOTE urlopen has a common certificate error described here: https://stackoverflow.com/questions/50236117/scraping-ssl-certificate-verify-failed-error-for-http-en-wikipedia-org
-'''
 def verify_decode_jwt(token):
+    print('verify_token')
+
     jsonurl = urlopen(f'https://{AUTH0_DOMAIN}/.well-known/jwks.json')
     jwks = json.loads(jsonurl.read())
     unverified_header = jwt.get_unverified_header(token)
@@ -127,6 +127,7 @@ def verify_decode_jwt(token):
 
 ## Requiring authentication
 def requires_auth(permission=''):
+    print('requires_auth')
     def requires_auth_decorator(f):
         @wraps(f)
         def wrapper(*args, **kwargs):

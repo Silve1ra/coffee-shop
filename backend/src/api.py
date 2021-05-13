@@ -27,7 +27,7 @@ def index_drinks():
 
 @app.route('/drinks-detail')
 @requires_auth('get:drinks-detail')
-def detail_drinks():
+def detail_drinks(payload):
     drinks = Drink.query.all()
 
     return jsonify({
@@ -38,20 +38,22 @@ def detail_drinks():
 
 @app.route('/drinks', methods=['POST'])
 @requires_auth('post:drinks')
-def store_drink():
+def store_drink(payload):
     body = request.get_json()
-    new_title = body.get('title')
 
-    new_recipe = body.get('recipe')
-    new_recipe = json.dumps([new_recipe])
+    if 'title' and 'recipe' not in body:
+        abort(422)
     
     try:
+        new_title = body.get('title')
+        new_recipe = json.dumps([body.get('recipe')])
+
         drink = Drink(title=new_title, recipe=new_recipe)
         drink.insert()
 
         return jsonify({
             'success': True,
-            'drinks': drink
+            'drinks': [drink.long()]
         })
 
     except:
@@ -60,7 +62,7 @@ def store_drink():
 
 @app.route('/drinks/<int:drink_id>', methods=['PATCH'])
 @requires_auth('patch:drinks')
-def update_drink(drink_id):
+def update_drink(payload, drink_id):
     body = request.get_json()
     
     try:
@@ -78,7 +80,7 @@ def update_drink(drink_id):
 
         return jsonify({
             'success': True,
-            'drinks': drink
+            'drinks': [drink.long()]
         })
 
     except:
@@ -87,7 +89,7 @@ def update_drink(drink_id):
 
 @app.route('/drinks/<int:drink_id>', methods=['DELETE'])
 @requires_auth('delete:drinks')
-def delete_drink(drink_id):    
+def delete_drink(payload, drink_id):    
     try:
         drink = Drink.query.filter(Drink.id == drink_id).one_or_none()
         if drink is None:
@@ -97,7 +99,7 @@ def delete_drink(drink_id):
 
         return jsonify({
             'success': True,
-            'drinks': drink_id
+            'deleted': drink_id
         })
 
     except:
@@ -105,12 +107,12 @@ def delete_drink(drink_id):
 
 # Error Handling
 @app.errorhandler(400)
-    def bad_request(error):
-        return jsonify({
-            "success": False,
-            "error": 400,
-            "message": "bad request"
-        }), 400
+def bad_request(error):
+    return jsonify({
+        "success": False,
+        "error": 400,
+        "message": "bad request"
+    }), 400
 
 @app.errorhandler(401)
 def unauthorized(error):
@@ -121,20 +123,20 @@ def unauthorized(error):
     }), 401
 
 @app.errorhandler(404)
-    def not_found(error):
-        return jsonify({
-            "success": False,
-            "error": 404,
-            "message": "resource not found"
-        }), 404
+def not_found(error):
+    return jsonify({
+        "success": False,
+        "error": 404,
+        "message": "resource not found"
+    }), 404
 
 @app.errorhandler(405)
-    def not_allowed(error):
-        return jsonify({
-            "success": False,
-            "error": 405,
-            "message": "method not allowed"
-        }), 405
+def not_allowed(error):
+    return jsonify({
+        "success": False,
+        "error": 405,
+        "message": "method not allowed"
+    }), 405
 
 @app.errorhandler(422)
 def unprocessable(error):
@@ -145,12 +147,12 @@ def unprocessable(error):
     }), 422
 
 @app.errorhandler(500)
-    def internal_server_error(error):
-        return jsonify({
-            "success": False,
-            "error": 500,
-            "message": "internal server error"
-        }), 500
+def internal_server_error(error):
+    return jsonify({
+        "success": False,
+        "error": 500,
+        "message": "internal server error"
+    }), 500
 
 @app.errorhandler(AuthError)
 def auth_error(error):
