@@ -9,18 +9,20 @@ AUTH0_DOMAIN = 'silve1ra.us.auth0.com'
 ALGORITHMS = ['RS256']
 API_AUDIENCE = 'coffee-shop'
 
-## AuthError Exception
+# AuthError Exception
 '''
 AuthError Exception
 A standardized way to communicate auth failure modes
 '''
+
+
 class AuthError(Exception):
     def __init__(self, error, status_code):
         self.error = error
         self.status_code = status_code
 
 
-## Getting JWT
+# Getting JWT
 def get_token_auth_header():
     auth = request.headers.get('Authorization', None)
     if not auth:
@@ -52,7 +54,9 @@ def get_token_auth_header():
 
     return token
 
-## Checking permissions
+# Checking permissions
+
+
 def check_permissions(permission, payload):
     if 'permissions' not in payload:
         raise AuthError({
@@ -60,7 +64,6 @@ def check_permissions(permission, payload):
             'description': 'Permissions not included in JWT.'
         }, 400)
 
-    
     if permission not in payload['permissions']:
         raise AuthError({
             'code': 'unauthorized',
@@ -69,7 +72,7 @@ def check_permissions(permission, payload):
     return True
 
 
-## Decoding JWT
+# Decoding JWT
 def verify_decode_jwt(token):
     jsonurl = urlopen(f'https://{AUTH0_DOMAIN}/.well-known/jwks.json')
     jwks = json.loads(jsonurl.read())
@@ -119,11 +122,13 @@ def verify_decode_jwt(token):
                 'description': 'Unable to parse authentication token.'
             }, 400)
     raise AuthError({
-                'code': 'invalid_header',
+        'code': 'invalid_header',
                 'description': 'Unable to find the appropriate key.'
-            }, 400)
+    }, 400)
 
-## Requiring authentication
+# Requiring authentication
+
+
 def requires_auth(permission=''):
     def requires_auth_decorator(f):
         @wraps(f)
@@ -131,7 +136,7 @@ def requires_auth(permission=''):
             token = get_token_auth_header()
             try:
                 payload = verify_decode_jwt(token)
-            except:
+            except BaseException:
                 abort(401)
 
             check_permissions(permission, payload)
