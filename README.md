@@ -163,14 +163,12 @@ response:
 ```
 body example
 {
-	"title": "water 2 new",
-	"recipe": [
-		{
-			"color": "pink",
-			"name": "Water",
-			"parts": 1
-		}
-	]
+  "title": "Water2 new",
+  "recipe": {
+    "name": "Water",
+    "color": "pink",
+    "parts": 1
+  }
 }
 ```
 ```
