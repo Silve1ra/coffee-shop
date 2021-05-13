@@ -75,11 +75,11 @@ The API will return three error types when requests fail:
 - 500: Internal Server Error
 
 ### Endpoints 
-#### GET /categories
+#### GET /drinks
 - General:
     - Returns a list of drinks and a message with success status.
     - This functionality is public for any user.
-- Sample: `http://127.0.0.1:5000/drinks`
+- `http://127.0.0.1:5000/drinks`
 ```
 {
   "drinks": [
@@ -102,7 +102,7 @@ The API will return three error types when requests fail:
 - General:
     - Returns a list of the drinks details and a message with success status.
     - This functionality is restritected to specific logged in user roles.
-- Sample: `http://127.0.0.1:5000/drinks-detail`
+- `http://127.0.0.1:5000/drinks-detail`
 ```{
   "drinks": [
     {
