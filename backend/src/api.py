@@ -74,7 +74,7 @@ def update_drink(payload, drink_id):
             drink.title = body.get('title')
 
         if 'recipe' in body:
-            drink.recipe = json.dumps([body.get('recipe')])
+            drink.recipe = json.dumps(body.get('recipe'))
 
         drink.update()
 
