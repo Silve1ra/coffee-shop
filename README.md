@@ -27,6 +27,9 @@ Developers using this project should already have Python3, pip and node installe
 
 To run the application run the following commands: 
 ```
+pip install -r requirements.txt
+```
+```
 export FLASK_APP=flaskr
 export FLASK_ENV=development
 flask run
