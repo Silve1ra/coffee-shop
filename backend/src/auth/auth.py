@@ -71,8 +71,6 @@ def check_permissions(permission, payload):
 
 ## Decoding JWT
 def verify_decode_jwt(token):
-    print('verify_token')
-
     jsonurl = urlopen(f'https://{AUTH0_DOMAIN}/.well-known/jwks.json')
     jwks = json.loads(jsonurl.read())
     unverified_header = jwt.get_unverified_header(token)
@@ -127,7 +125,6 @@ def verify_decode_jwt(token):
 
 ## Requiring authentication
 def requires_auth(permission=''):
-    print('requires_auth')
     def requires_auth_decorator(f):
         @wraps(f)
         def wrapper(*args, **kwargs):

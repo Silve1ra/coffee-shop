@@ -105,6 +105,20 @@ def delete_drink(payload, drink_id):
     except:
         abort(422)
 
+@app.route('/login-results')
+def login_results():
+    return jsonify({
+        "success": True,
+        "message": "Welcome to Coffee Shop.",
+        "token": "IDK yet how to get it"
+    })
+
+@app.after_request
+def after(response):
+    print(response.status)
+    print(response.headers)
+    return response
+
 # Error Handling
 @app.errorhandler(400)
 def bad_request(error):
