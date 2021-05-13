@@ -1,5 +1,5 @@
 import json
-from flask import request, _request_ctx_stack
+from flask import request, _request_ctx_stack, abort
 from functools import wraps
 from jose import jwt
 from urllib.request import urlopen
@@ -22,7 +22,7 @@ class AuthError(Exception):
 
 ## Getting JWT
 def get_token_auth_header():
-   auth = request.headers.get('Authorization', None)
+    auth = request.headers.get('Authorization', None)
     if not auth:
         raise AuthError({
             'code': 'authorization_header_missing',
