@@ -342,13 +342,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/drinks/1",
+							"raw": "{{host}}/drinks/2",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"drinks",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -557,7 +557,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"Water3\",\n    \"recipe\": {\n        \"name\": \"Water\",\n        \"color\": \"blue\",\n        \"parts\": 1\n    }\n}"
+							"raw": "{\n    \"title\": \"Water2\",\n    \"recipe\": {\n        \"name\": \"Water\",\n        \"color\": \"red\",\n        \"parts\": 1\n    }\n}"
 						},
 						"url": {
 							"raw": "{{host}}/drinks",
@@ -613,16 +613,16 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"Water5\"\n}"
+							"raw": "{\n    \"title\": \"Water new\"\n}"
 						},
 						"url": {
-							"raw": "{{host}}/drinks/1",
+							"raw": "{{host}}/drinks/2",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"drinks",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -725,8 +725,15 @@
 	"variable": [
 		{
 			"key": "host",
-			"value": "localhost:5000",
-			"type": "string"
+			"value": "localhost:5000"
+		},
+		{
+			"key": "barista_token",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InBtRXg1YzJ2TmVyaE15RHB4VFB5NiJ9.eyJpc3MiOiJodHRwczovL3NpbHZlMXJhLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2MDlkNjUxNzM4NzJiYjAwNjhlNWVlN2MiLCJhdWQiOiJjb2ZmZWUtc2hvcCIsImlhdCI6MTYyMTAxMzUzNiwiZXhwIjoxNjIxMDk5OTM2LCJhenAiOiJKdjhGZzFOQVkzc1M1RVZvM0dheUt1SmZzdFNGNm15WiIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OmRyaW5rcy1kZXRhaWwiXX0.tD3hyqmgbWiJdUxjMF5s_mWgoYjrhjRMLCVRWvlDHZ7Xezq9raes1dN14pUPee0VjHnkPiw7bIElZVcCYm-UCnUaDzT9CE9UtSfqzU7vjgGRxoryzygKJxLm-Yyi2qajTaY_dQIZzsCp9Qnw8h2aKshESYW38LWyoQFcxO-fOlO9nj4smu3AabWVJrG0Och6ly-JcC6xUKkoQVvCJ0_P1T_6C63jj86akmt8hfU-LkCuVwQzk2D583Vz6Cco3NfaEzlUt3rZryzs2ET9YGSsVpQlg4oNVNeeS6v8qOQmalgzSV0iJPLV761fjQELqSGChQOKTTI7ZMUZnpV7cEv5pA"
+		},
+		{
+			"key": "manager_token",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InBtRXg1YzJ2TmVyaE15RHB4VFB5NiJ9.eyJpc3MiOiJodHRwczovL3NpbHZlMXJhLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2MDk0MjIzNzVmMjE2ODAwNmI1YmQ5ODAiLCJhdWQiOiJjb2ZmZWUtc2hvcCIsImlhdCI6MTYyMTAxMzUxMiwiZXhwIjoxNjIxMDk5OTEyLCJhenAiOiJKdjhGZzFOQVkzc1M1RVZvM0dheUt1SmZzdFNGNm15WiIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmRyaW5rcyIsImdldDpkcmlua3MtZGV0YWlsIiwicGF0Y2g6ZHJpbmtzIiwicG9zdDpkcmlua3MiXX0.qMleb5MWqOMbaeQ_DcP21GcDQPzkmSm3teJliHnI6OwqphVWpkLvNBIPzENFpQ2zOfUfJzhp-9bVKoPjhsmiAgjyxpGBKKoM-5MyB4BEjPudBxlg7F-IQu3FG-aeJ-gxwOqYemlufwP8oTk940wzm5WGS8K1hcDKf5AVQ18dlTa065O4giupQn-LPUtTx5wYiVu6uD1wwoIgxb00sXZAPOCFgbqjG3mWEsmRkE_IIofLYg5y-LhkvyXqDT_3giPcvIp-GDSf1MIkQXtb9JhivHK6cfJ8MsoSp54J_b8gWw6-dLdGscHPB0CPLQQvSc-JRmKW4-D-dc32pCfnKlI-jQ"
 		}
 	]
 }
